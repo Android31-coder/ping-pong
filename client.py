@@ -4,6 +4,7 @@ import json
 from threading import Thread
 
 # ---ПУГАМЕ НАЛАШТУВАННЯ ---
+mixer.init()
 WIDTH, HEIGHT = 800, 600
 init()
 screen = display.set_mode((WIDTH, HEIGHT))
@@ -44,8 +45,9 @@ font_main = font.Font(None, 36)
 ball_img = transform.scale(image.load("pin.png"), (20,20))
 racket1 = transform.scale(image.load("racket1.png"), (20,100))
 racket2 = transform.scale(image.load("racket2.png"), (20,100))
+bg_img = transform.scale(image.load("images.jpg"), (800,600))
 # --- ЗВУКИ ---
-
+bounce_sound = mixer.Sound("Ping-pong-ball-bouncing-734.wav")
 # --- ГРА ---
 game_over = False
 winner = None
@@ -90,7 +92,7 @@ while True:
         continue  # Блокує гру після перемоги
 
     if game_state:
-        screen.fill((30, 30, 30))
+        screen.blit(bg_img,(0,0))
         screen.blit(racket1, (20, game_state['paddles']['0']))
         screen.blit(racket2, (WIDTH -40, game_state['paddles']['1']))
         screen.blit(ball_img, (game_state['ball']['x']-10, game_state['ball']['y']-10))
@@ -100,8 +102,10 @@ while True:
         if game_state['sound_event']:
             if game_state['sound_event'] == 'wall_hit':
                 # звук відбиття м'ячика від стін
+                bounce_sound.play()
                 pass
             if game_state['sound_event'] == 'platform_hit':
+                bounce_sound.play()
                 # звук відбиття м'ячика від платформи
                 pass
 

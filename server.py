@@ -86,7 +86,15 @@ class GameServer:
                     self.ball['vy'] *= -1
                     self.sound_event = "wall_hit"
 
-                if self.collided == False and (self.ball['y'] - self.paddles[0] == 20 or self.ball['y'] == 100 + self.paddles[0]) and self.ball['x'] < 40:
+                if self.collided == False and (0 <= self.ball['x'] <= 40) and \
+                    (self.paddles[0] - 3 <= self.ball['y'] + 20 <= self.paddles[0] + 3):
+                    self.ball['vx'] *= -1
+                    self.ball['vy'] *= -1
+                    self.collided = True
+                    self.sound_event = 'platform_hit'
+
+                if self.collided == False and (0 <= self.ball['x'] <= 40) and \
+                    (self.paddles[0] - 3 <= self.ball['y'] <= self.paddles[0] + 3):
                     self.ball['vx'] *= -1
                     self.ball['vy'] *= -1
                     self.collided = True

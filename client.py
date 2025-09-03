@@ -45,7 +45,7 @@ font_main = font.Font(None, 36)
 ball_img = transform.scale(image.load("pin.png"), (20,20))
 racket1 = transform.scale(image.load("racket1.png"), (20,100))
 racket2 = transform.scale(image.load("racket2.png"), (20,100))
-bg_img = transform.scale(image.load("images.jpg"), (800,600))
+bg_img = transform.scale(image.load("font.jpg"), (800,600))
 # --- ЗВУКИ ---
 bounce_sound = mixer.Sound("Ping-pong-ball-bouncing-734.wav")
 # --- ГРА ---
